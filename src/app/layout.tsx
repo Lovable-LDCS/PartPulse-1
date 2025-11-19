@@ -3,8 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { RoleProvider } from "@/contexts/RoleContext";
 import { PreviewProvider } from "@/contexts/PreviewContext";
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "PartPulse - Spare Parts Distribution Management",
@@ -22,15 +21,9 @@ export default function RootLayout({
         <AuthProvider>
           <RoleProvider>
             <PreviewProvider>
-              <div className="flex flex-col h-screen">
-                <Header />
-                <div className="flex flex-1 overflow-hidden">
-                  <Sidebar />
-                  <main className="flex-1 overflow-y-auto bg-gray-50">
-                    {children}
-                  </main>
-                </div>
-              </div>
+              <ClientLayout>
+                {children}
+              </ClientLayout>
             </PreviewProvider>
           </RoleProvider>
         </AuthProvider>
