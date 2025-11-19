@@ -90,6 +90,12 @@ The app is configured for automatic deployment to GitHub Pages:
 2. GitHub Actions will automatically build and deploy
 3. Access your app at: `https://lovable-ldcs.github.io/PartPulse-1/`
 
+**📍 Need the access URLs?** See [ACCESS_URLS.md](ACCESS_URLS.md) for:
+- Complete list of URLs for all pages
+- Deployment verification steps
+- Troubleshooting guide
+- How to trigger new deployments
+
 **Note**: For GitHub Pages to work properly, ensure:
 - Repository Settings > Pages > Source is set to "GitHub Actions"
 - The workflow has proper permissions (included in workflow file)
@@ -148,6 +154,7 @@ npm run test:e2e
 
 ## 📚 Documentation
 
+- **Access URLs**: See `ACCESS_URLS.md` for GitHub Pages URLs and verification steps
 - **Architecture**: See `rules.md` for complete architecture specification
 - **QA Requirements**: See `qa/requirements.json` for quality assurance checks
 - **Database Schema**: See `supabase/migrations/` for database structure
