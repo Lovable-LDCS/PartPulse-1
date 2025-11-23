@@ -18,9 +18,10 @@ export default function Header() {
         <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
           <Image
             src="/assets/hexagon-logo.png"
-            alt="PartPulse Logo"
+            alt="PartPulse - Spare Parts Distribution Management Logo"
             fill
             className="object-contain"
+            priority
             unoptimized
           />
         </div>
@@ -56,9 +57,10 @@ export default function Header() {
         <div className="w-20 h-8 sm:w-24 sm:h-10 relative flex-shrink-0 ml-2 sm:ml-4">
           <Image
             src="/assets/logo.png"
-            alt="Trane Thermo King"
+            alt="Trane Thermo King - Partner Logo"
             fill
             className="object-contain"
+            priority
             unoptimized
           />
         </div>
