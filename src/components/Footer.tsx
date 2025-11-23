@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="w-8 h-8 relative flex-shrink-0">
               <Image
                 src="/assets/hexagon-logo.png"
-                alt="PartPulse Logo"
+                alt="PartPulse - Spare Parts Distribution Management Logo"
                 fill
                 className="object-contain"
                 unoptimized
@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="w-16 h-6 sm:w-20 sm:h-8 relative flex-shrink-0">
             <Image
               src="/assets/logo.png"
-              alt="Trane Thermo King"
+              alt="Trane Thermo King - Partner Logo"
               fill
               className="object-contain"
               unoptimized
