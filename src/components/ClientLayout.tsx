@@ -2,6 +2,7 @@
 
 import { usePreview } from '@/contexts/PreviewContext';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import { ReactNode, useState } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -46,10 +47,13 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
         
         {/* Main content */}
         <main className={`
-          flex-1 overflow-y-auto bg-gray-50
+          flex-1 overflow-y-auto bg-gray-50 flex flex-col
           ${isMobileView ? 'w-full' : ''}
         `}>
-          {children}
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
         </main>
       </div>
     </div>
