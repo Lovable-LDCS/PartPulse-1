@@ -18,10 +18,10 @@ test.describe('Footer Component', () => {
     await expect(footer.locator('text=Powered by')).toBeVisible();
     
     // Check logos are present
-    const partPulseLogo = footer.locator('img[alt="PartPulse Logo"]');
+    const partPulseLogo = footer.locator('img[alt="PartPulse - Spare Parts Distribution Management Logo"]');
     await expect(partPulseLogo).toBeVisible();
     
-    const traneLogo = footer.locator('img[alt="Trane Thermo King"]');
+    const traneLogo = footer.locator('img[alt="Trane Thermo King - Partner Logo"]');
     await expect(traneLogo).toBeVisible();
   });
 
