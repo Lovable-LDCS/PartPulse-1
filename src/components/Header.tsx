@@ -14,10 +14,11 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between flex-wrap gap-4">
       <div className="flex items-center gap-2 sm:gap-4">
-        <div className="w-24 h-10 sm:w-32 sm:h-12 relative flex-shrink-0">
+        {/* PartPulse Hexagon Logo */}
+        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
           <Image
-            src="/assets/logo.png"
-            alt="Trane Thermo King"
+            src="/assets/hexagon-logo.png"
+            alt="PartPulse Logo"
             fill
             className="object-contain"
             unoptimized
@@ -50,6 +51,16 @@ export default function Header() {
               />
             </div>
           )}
+        </div>
+        {/* Trane Logo - Partner Branding */}
+        <div className="w-20 h-8 sm:w-24 sm:h-10 relative flex-shrink-0 ml-2 sm:ml-4">
+          <Image
+            src="/assets/logo.png"
+            alt="Trane Thermo King"
+            fill
+            className="object-contain"
+            unoptimized
+          />
         </div>
       </div>
 
