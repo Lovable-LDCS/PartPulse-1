@@ -5,6 +5,7 @@ import { useRole } from '@/contexts/RoleContext';
 import { Monitor, Smartphone } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { getAssetPath } from '@/lib/utils';
 
 export default function Header() {
   const { mode, setMode } = usePreview();
@@ -17,7 +18,7 @@ export default function Header() {
         {/* PartPulse Hexagon Logo */}
         <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
           <Image
-            src="/assets/hexagon-logo.png"
+            src={getAssetPath('/assets/hexagon-logo.png')}
             alt="PartPulse - Spare Parts Distribution Management Logo"
             fill
             className="object-contain"
@@ -31,7 +32,7 @@ export default function Header() {
           {!pulseGifError ? (
             <div className="w-6 h-6 sm:w-8 sm:h-8 relative flex-shrink-0">
               <Image
-                src="/assets/pulse.gif"
+                src={getAssetPath('/assets/pulse.gif')}
                 alt="Pulse animation"
                 width={32}
                 height={32}
@@ -43,7 +44,7 @@ export default function Header() {
           ) : (
             <div className="w-6 h-6 sm:w-8 sm:h-8 relative flex-shrink-0">
               <Image
-                src="/assets/pulse.svg"
+                src={getAssetPath('/assets/pulse.svg')}
                 alt="Pulse animation"
                 width={32}
                 height={32}
@@ -56,7 +57,7 @@ export default function Header() {
         {/* Trane Logo - Partner Branding */}
         <div className="w-20 h-8 sm:w-24 sm:h-10 relative flex-shrink-0 ml-2 sm:ml-4">
           <Image
-            src="/assets/logo.png"
+            src={getAssetPath('/assets/logo.png')}
             alt="Trane Thermo King - Partner Logo"
             fill
             className="object-contain"

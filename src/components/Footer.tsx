@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { getAssetPath } from '@/lib/utils';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +14,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 relative flex-shrink-0">
               <Image
-                src="/assets/hexagon-logo.png"
+                src={getAssetPath('/assets/hexagon-logo.png')}
                 alt="PartPulse - Spare Parts Distribution Management Logo"
                 fill
                 className="object-contain"
@@ -31,7 +32,7 @@ export default function Footer() {
           <span className="text-xs text-gray-500">Powered by</span>
           <div className="w-16 h-6 sm:w-20 sm:h-8 relative flex-shrink-0">
             <Image
-              src="/assets/logo.png"
+              src={getAssetPath('/assets/logo.png')}
               alt="Trane Thermo King - Partner Logo"
               fill
               className="object-contain"
