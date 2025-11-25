@@ -1,0 +1,354 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-25",
+  "description": "Watchdog configuration for drift detection and compliance monitoring",
+  "driftDetection": {
+    "enabled": true,
+    "scanInterval": "daily",
+    "rules": [
+      {
+        "id": "DRIFT-001",
+        "name": "Architecture File Integrity",
+        "description": "Detect unauthorized changes to architecture files",
+        "files": [
+          "architecture/rules.md",
+          "architecture/components.md"
+        ],
+        "action": "alert"
+      },
+      {
+        "id": "DRIFT-002",
+        "name": "QA Configuration Integrity",
+        "description": "Detect unauthorized changes to QA configuration",
+        "files": [
+          "qa/requirements.json",
+          "qa/requirements.md",
+          "qa/checklist.json"
+        ],
+        "action": "alert"
+      },
+      {
+        "id": "DRIFT-003",
+        "name": "Route Consistency",
+        "description": "Detect new routes not defined in architecture",
+        "pattern": "src/app/**/page.tsx",
+        "validateAgainst": "architecture/rules.md",
+        "action": "alert"
+      },
+      {
+        "id": "DRIFT-004",
+        "name": "Component Wiring",
+        "description": "Detect unwired components in codebase",
+        "pattern": "src/components/**/*.tsx",
+        "validateAgainst": "architecture/components.md",
+        "action": "warn"
+      },
+      {
+        "id": "DRIFT-005",
+        "name": "Environment Variable Drift",
+        "description": "Detect missing or changed environment variables",
+        "files": [
+          ".env.example"
+        ],
+        "action": "alert"
+      },
+      {
+        "id": "DRIFT-006",
+        "name": "Dependency Drift",
+        "description": "Detect unauthorized dependency changes",
+        "files": [
+          "package.json",
+          "package-lock.json"
+        ],
+        "action": "warn"
+      }
+    ]
+  },
+  "minimumSystemBehavior": {
+    "routes": {
+      "mustRespond200": [
+        "/",
+        "/internal-transfer",
+        "/warranty-claims",
+        "/invite-members",
+        "/reports",
+        "/settings",
+        "/security-dashboard",
+        "/health-checker"
+      ],
+      "mustRequireAuth": true,
+      "mustRedirectUnauthorized": true
+    },
+    "forms": {
+      "mustValidateRequired": true,
+      "mustShowFeedback": true,
+      "mustPersistData": true
+    },
+    "authentication": {
+      "mustPersistSession": true,
+      "mustSupportLogout": true,
+      "mustEnforceRoles": true
+    },
+    "ui": {
+      "mustBeResponsive": true,
+      "mustShowLoadingStates": true,
+      "mustShowErrorStates": true
+    }
+  },
+  "aiBehavioralNotes": {
+    "codeGeneration": {
+      "mustFollowArchitecture": true,
+      "mustUpdateQAFirst": true,
+      "mustNotModifyExistingCode": "unless required by architecture",
+      "mustPreserveWiring": true
+    },
+    "testing": {
+      "mustWriteTestsFirst": "RED-GREEN methodology",
+      "mustCoverWiringChecks": true,
+      "mustVerifyE2E": true
+    },
+    "deployment": {
+      "mustPassAllQAChecks": true,
+      "mustNotExposeSecrets": true,
+      "mustVerifyRoutes": true
+    },
+    "communication": {
+      "mustExplainChanges": true,
+      "mustAskBeforeAmbiguity": true,
+      "mustReportProgress": true
+    }
+  },
+  "complianceMonitoring": {
+    "categories": [
+      {
+        "id": "COMP-001",
+        "name": "Code Quality",
+        "checks": [
+          "ESLint passes",
+          "TypeScript strict mode",
+          "No console.log in production",
+          "Consistent code style"
+        ],
+        "frequency": "on-commit"
+      },
+      {
+        "id": "COMP-002",
+        "name": "Security",
+        "checks": [
+          "No exposed secrets",
+          "RLS policies active",
+          "Admin routes protected",
+          "Input sanitization"
+        ],
+        "frequency": "daily"
+      },
+      {
+        "id": "COMP-003",
+        "name": "Performance",
+        "checks": [
+          "Lighthouse score > 90",
+          "No memory leaks",
+          "Optimized bundle size",
+          "Lazy loading implemented"
+        ],
+        "frequency": "weekly"
+      },
+      {
+        "id": "COMP-004",
+        "name": "Accessibility",
+        "checks": [
+          "WCAG 2.1 AA compliance",
+          "Keyboard navigation",
+          "Screen reader support",
+          "Color contrast"
+        ],
+        "frequency": "weekly"
+      }
+    ]
+  },
+  "securityMonitoring": {
+    "popi": {
+      "enabled": true,
+      "description": "Protection of Personal Information Act (South Africa) compliance placeholder",
+      "requirements": [
+        {
+          "id": "POPI-001",
+          "name": "Data Collection Consent",
+          "status": "pending",
+          "notes": "Implement consent mechanism before collecting personal data"
+        },
+        {
+          "id": "POPI-002",
+          "name": "Data Access Controls",
+          "status": "pending",
+          "notes": "RLS policies provide database-level access control"
+        },
+        {
+          "id": "POPI-003",
+          "name": "Data Retention Policy",
+          "status": "pending",
+          "notes": "Define and implement data retention limits"
+        },
+        {
+          "id": "POPI-004",
+          "name": "Data Breach Notification",
+          "status": "pending",
+          "notes": "Implement breach detection and notification process"
+        }
+      ]
+    },
+    "generalSecurity": {
+      "enabled": true,
+      "checks": [
+        {
+          "id": "GS-001",
+          "name": "HTTPS Enforcement",
+          "status": "pending"
+        },
+        {
+          "id": "GS-002",
+          "name": "Session Management",
+          "status": "active"
+        },
+        {
+          "id": "GS-003",
+          "name": "Password Hashing",
+          "status": "active",
+          "notes": "Handled by Supabase Auth"
+        },
+        {
+          "id": "GS-004",
+          "name": "API Authentication",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "internationalStandards": {
+    "iso27001": {
+      "enabled": false,
+      "status": "placeholder",
+      "notes": "Information security management - future implementation"
+    },
+    "gdpr": {
+      "enabled": false,
+      "status": "placeholder",
+      "notes": "General Data Protection Regulation - applicable for EU users"
+    },
+    "owasp": {
+      "enabled": true,
+      "status": "partial",
+      "notes": "OWASP Top 10 security considerations implemented",
+      "checklist": [
+        {
+          "id": "A01",
+          "name": "Broken Access Control",
+          "status": "addressed",
+          "implementation": "RLS policies, role-based access"
+        },
+        {
+          "id": "A02",
+          "name": "Cryptographic Failures",
+          "status": "addressed",
+          "implementation": "Supabase handles encryption"
+        },
+        {
+          "id": "A03",
+          "name": "Injection",
+          "status": "addressed",
+          "implementation": "Parameterized queries via Supabase"
+        },
+        {
+          "id": "A04",
+          "name": "Insecure Design",
+          "status": "monitoring",
+          "implementation": "Architecture-first approach"
+        },
+        {
+          "id": "A05",
+          "name": "Security Misconfiguration",
+          "status": "monitoring",
+          "implementation": "Environment variable management"
+        },
+        {
+          "id": "A06",
+          "name": "Vulnerable Components",
+          "status": "monitoring",
+          "implementation": "Regular dependency updates"
+        },
+        {
+          "id": "A07",
+          "name": "Authentication Failures",
+          "status": "addressed",
+          "implementation": "Supabase Auth"
+        },
+        {
+          "id": "A08",
+          "name": "Software Integrity Failures",
+          "status": "monitoring",
+          "implementation": "CI/CD pipeline verification"
+        },
+        {
+          "id": "A09",
+          "name": "Security Logging",
+          "status": "partial",
+          "implementation": "Audit log table"
+        },
+        {
+          "id": "A10",
+          "name": "Server-Side Request Forgery",
+          "status": "monitoring",
+          "implementation": "API route validation"
+        }
+      ]
+    },
+    "wcag": {
+      "enabled": true,
+      "status": "partial",
+      "level": "AA",
+      "notes": "Web Content Accessibility Guidelines 2.1"
+    }
+  },
+  "alerting": {
+    "channels": [
+      {
+        "type": "email",
+        "enabled": false,
+        "recipients": [],
+        "notes": "Configure in app settings"
+      },
+      {
+        "type": "dashboard",
+        "enabled": true,
+        "location": "/security-dashboard"
+      },
+      {
+        "type": "healthChecker",
+        "enabled": true,
+        "location": "/health-checker"
+      }
+    ],
+    "severity": {
+      "critical": {
+        "description": "Immediate action required",
+        "responseTime": "1 hour",
+        "examples": ["Security breach", "Data loss", "System down"]
+      },
+      "high": {
+        "description": "Urgent attention needed",
+        "responseTime": "4 hours",
+        "examples": ["Authentication failure", "Data corruption", "Performance degradation"]
+      },
+      "medium": {
+        "description": "Should be addressed soon",
+        "responseTime": "24 hours",
+        "examples": ["Configuration drift", "Minor vulnerability", "Test failures"]
+      },
+      "low": {
+        "description": "Track and address when possible",
+        "responseTime": "1 week",
+        "examples": ["Code style issues", "Documentation gaps", "Minor UI issues"]
+      }
+    }
+  }
+}
