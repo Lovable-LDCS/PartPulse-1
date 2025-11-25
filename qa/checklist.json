@@ -1,0 +1,376 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-25",
+  "description": "QA Checklist for PartPulse - Green/Red Evaluation Model",
+  "evaluationModel": {
+    "GREEN": "Requirement fully met, verified by automated checks",
+    "RED": "Requirement not met, blocks deployment",
+    "YELLOW": "Partial compliance, requires review (non-blocking in development)"
+  },
+  "categories": [
+    {
+      "id": "architecture",
+      "name": "Architecture Compliance",
+      "description": "Validates adherence to True North architecture",
+      "checks": [
+        {
+          "id": "ARCH-001",
+          "description": "Architecture rules.md exists",
+          "type": "file_exists",
+          "path": "architecture/rules.md",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "ARCH-002",
+          "description": "Architecture components.md exists",
+          "type": "file_exists",
+          "path": "architecture/components.md",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "ARCH-003",
+          "description": "QA requirements.json exists",
+          "type": "file_exists",
+          "path": "qa/requirements.json",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "ARCH-004",
+          "description": "All pages defined in architecture exist",
+          "type": "route_check",
+          "routes": [
+            "/",
+            "/internal-transfer",
+            "/warranty-claims",
+            "/invite-members",
+            "/reports",
+            "/settings",
+            "/security-dashboard",
+            "/health-checker"
+          ],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "ui_ux",
+      "name": "UI/UX Consistency",
+      "description": "Validates user interface and experience standards",
+      "checks": [
+        {
+          "id": "UX-001",
+          "description": "Primary color #FF2B00 defined in theme",
+          "type": "config_check",
+          "path": "tailwind.config.ts",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "UX-002",
+          "description": "Logo displayed in header",
+          "type": "e2e_check",
+          "selector": "[data-testid='logo']",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "UX-003",
+          "description": "Sidebar navigation present",
+          "type": "e2e_check",
+          "selector": "[data-testid='sidebar']",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "UX-004",
+          "description": "Loading spinner component exists",
+          "type": "component_check",
+          "component": "Spinner",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "UX-005",
+          "description": "Toast notification system exists",
+          "type": "component_check",
+          "component": "Toast",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        }
+      ]
+    },
+    {
+      "id": "user_feedback",
+      "name": "User Feedback",
+      "description": "Validates user feedback mechanisms",
+      "checks": [
+        {
+          "id": "FB-001",
+          "description": "Saving indicator shown during form submission",
+          "type": "behavior_check",
+          "scenario": "form_submit",
+          "expectedFeedback": "spinner",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "FB-002",
+          "description": "Loading spinner shown during data fetch",
+          "type": "behavior_check",
+          "scenario": "data_load",
+          "expectedFeedback": "spinner",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "FB-003",
+          "description": "Error toast shown on failure",
+          "type": "behavior_check",
+          "scenario": "error",
+          "expectedFeedback": "toast",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        },
+        {
+          "id": "FB-004",
+          "description": "Success toast shown on completion",
+          "type": "behavior_check",
+          "scenario": "success",
+          "expectedFeedback": "toast",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        }
+      ]
+    },
+    {
+      "id": "component_wiring",
+      "name": "Component Wiring",
+      "description": "Validates components are properly connected",
+      "checks": [
+        {
+          "id": "WIRE-001",
+          "description": "Header component renders",
+          "type": "render_check",
+          "component": "Header",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "WIRE-002",
+          "description": "Sidebar component renders",
+          "type": "render_check",
+          "component": "Sidebar",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "WIRE-003",
+          "description": "Preview toggle is functional",
+          "type": "interaction_check",
+          "component": "PreviewToggle",
+          "action": "click",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "WIRE-004",
+          "description": "Admin tabs visible only to admins",
+          "type": "visibility_check",
+          "components": ["InviteMembers", "Reports", "Settings", "SecurityDashboard", "HealthChecker"],
+          "visibleTo": ["Admin"],
+          "hiddenFrom": ["Technician"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "workflow",
+      "name": "Workflow Validation",
+      "description": "Validates critical user workflows",
+      "checks": [
+        {
+          "id": "WF-001",
+          "description": "Login workflow completes successfully",
+          "type": "workflow_check",
+          "steps": ["enter_credentials", "submit", "verify_session"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "WF-002",
+          "description": "Form submission workflow completes",
+          "type": "workflow_check",
+          "steps": ["fill_form", "validate", "submit", "confirm"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "WF-003",
+          "description": "Report generation workflow completes",
+          "type": "workflow_check",
+          "steps": ["load_data", "apply_filters", "export"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "data_integrity",
+      "name": "Data Integrity",
+      "description": "Validates data consistency and correctness",
+      "checks": [
+        {
+          "id": "DATA-001",
+          "description": "Required form fields enforced",
+          "type": "validation_check",
+          "forms": ["internal_transfer", "warranty_claims"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "DATA-002",
+          "description": "Date fields accept valid dates only",
+          "type": "validation_check",
+          "fieldType": "date",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "DATA-003",
+          "description": "Quantity fields accept positive integers only",
+          "type": "validation_check",
+          "fieldType": "quantity",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "deployment",
+      "name": "Deployment Readiness",
+      "description": "Validates system is ready for deployment",
+      "checks": [
+        {
+          "id": "DEPLOY-001",
+          "description": "Build passes without errors",
+          "type": "command_check",
+          "command": "npm run build",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "DEPLOY-002",
+          "description": "TypeScript compilation passes",
+          "type": "command_check",
+          "command": "npm run typecheck",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "DEPLOY-003",
+          "description": "ESLint passes without errors",
+          "type": "command_check",
+          "command": "npm run lint",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "DEPLOY-004",
+          "description": "All routes respond with 200",
+          "type": "route_check",
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "description": "Validates security requirements",
+      "checks": [
+        {
+          "id": "SEC-001",
+          "description": "No API keys in client-side code",
+          "type": "code_scan",
+          "patterns": ["SUPABASE_SERVICE_ROLE_KEY", "RESEND_API_KEY"],
+          "shouldNotMatch": true,
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "SEC-002",
+          "description": "Admin routes protected by role check",
+          "type": "protection_check",
+          "routes": ["/invite-members", "/reports", "/settings", "/security-dashboard", "/health-checker"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "SEC-003",
+          "description": "RLS policies enabled on all tables",
+          "type": "db_check",
+          "tables": ["users", "internal_transfers", "warranty_claims", "audit_log", "app_settings"],
+          "status": "pending",
+          "required": true,
+          "blocking": true
+        },
+        {
+          "id": "SEC-004",
+          "description": "Audit logging implemented",
+          "type": "code_check",
+          "pattern": "audit_log",
+          "status": "pending",
+          "required": true,
+          "blocking": false
+        }
+      ]
+    }
+  ],
+  "handoverCriteria": {
+    "allBlockingChecksMustPass": true,
+    "minimumGreenPercentage": 100,
+    "exceptionsAllowed": false,
+    "signoffRequired": ["Architecture", "Security", "Deployment"]
+  },
+  "summary": {
+    "totalChecks": 34,
+    "blockingChecks": 26,
+    "nonBlockingChecks": 8,
+    "lastRun": null,
+    "lastStatus": null
+  }
+}
