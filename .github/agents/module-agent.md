@@ -210,8 +210,8 @@ I aim to help users:
 
 ## 🔗 Integration Guidelines
 
-### AI Router Integration
-This module integrates with the central AI Router API (when implemented):
+### AI Router Integration (Future Implementation)
+This module is designed to integrate with a central AI Router API. When implemented, the integration will work as follows:
 
 **Endpoint:** `POST /api/ai/router`
 
