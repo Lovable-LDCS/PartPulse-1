@@ -1,4 +1,4 @@
-# AI Version – <MODULE NAME>
+# AI Version – PartPulse-1
 
 Current AI version: 1.0.0  
 Status: Active  
