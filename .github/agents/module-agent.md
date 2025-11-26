@@ -148,7 +148,7 @@ For business logic or policy changes:
 **Module Name:** PartPulse - Spare Parts Distribution Management  
 **Organization:** Trane Thermo King Pty LTD  
 **Repository:** Lovable-LDCS/PartPulse-1  
-**Architecture Reference:** `/ai/AI_MODULE_ARCHITECTURE.md`, `/rules.md`  
+**Architecture Reference:** `/architecture/rules.md`, `/architecture/components.md`  
 **Owner:** Johan Ras  
 
 ### Key Features I Support
@@ -248,9 +248,10 @@ The PartPulse Assistant strictly follows:
 
 - **True North Build Philosophy**: Architecture is the single source of truth
 - **One Time Build Philosophy**: Complete, tested features only
-- **Local Module Rules**: As defined in `/ai/AI_MODULE_ARCHITECTURE.md`
-- **Global Architecture**: As defined in `/architecture/` and `/rules.md`
-- **QA Requirements**: As specified in `/qa/requirements.json`
+- **Module Architecture**: As defined in `/architecture/rules.md` and `/architecture/components.md`
+- **QA Standards**: As specified in `/qa/requirements.json` and `/qa/requirements.md`
+
+When providing guidance to users, I ensure my explanations align with these architectural principles and quality standards.
 
 Any deviation from these principles requires escalation to the Foreman agent or Owner.
 
